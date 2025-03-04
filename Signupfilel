@@ -1,0 +1,38 @@
+Signup button 
+
+if(txt.name.getText().equals("")){
+JOptionPane.showMessageDialog(this,"All filed value is required");
+txtname.requestfocus();
+}
+else if(txt.email.getText().equals("")){
+JOptionPane.showMessageDialog(this,"All filed value is required");
+txtemail.requestfocus();
+}
+else if(txt.password.getText().equals("")){
+JOptionPane.showMessageDialog(this,"All filed value is required");
+txtpassword.requestfocus();
+}
+else if(txt.ans.getText().equals("")){
+JOptionPane.showMessageDialog(this,"All filed value is required");
+txtans.requestfocus();
+}
+else{
+Connection con=Connect.Connction();
+PreparedStatement pst=null;
+ResultSet rs=null;
+pst=con.preparedStatement("Select * from login where email=?");
+pst.setString(1, txtemail.getText());
+rs=pst.executeQuery();
+if(rs.next()){
+JOptionPane.showMessageDialog(this,"Use another Email Id");
+}
+else{
+pst=con.preparedStatement("insert into login (name,email, password,sq,ans)values(?,?,?,?,?)");
+pst.setString(1, txtname.getText());
+pst.setString(2, txtemail.getText());
+pst.setString(3, txtpassword.getText());
+pst.setString(4, jComboBox1.getItemAt(jComboBox1.getSelectedIndex()));
+pst.setString(5, txtans.getText());
+pst.executeUpdate();
+JOptionPane.showMessageDialog(this,"Registration Successful \n Login Now");
+}
