@@ -1,0 +1,130 @@
+submit button 
+Submit button
+else if(txt.ans.getText().equals("")){
+JOptionPane.showMessageDialog(this,"All filed value is required");
+txtans.requestfocus();
+}
+else{
+Connection con=Connect.Connction();
+PreparedStatement pst=null;
+ResultSet rs=null;
+pst=con.preparedStatement("Select * from login where email=?");
+pst.setString(1, txtemail.getText());
+rs=pst.executeQuery();
+if(rs.next()){
+try{
+pst=con.preparedStatement("update library.login set password=? where email=? and ans=?");
+pst.setString(1, txtpassword.getText());
+pst.setString(2, txtemail.getText());
+pst.setString(3, txtans.getText());
+pst.executeUpdate();
+JOptionPane.showMessageDialog(this,"Update  Successful \n Login Now");
+}
+}
+
+
+
+
+
+Search button 
+
+try{
+pst=con.prepareStatement("Select sq from library.login where email=?");
+pst.setString(1, txtemail.getText());
+rs=PST.executeQuery();
+if(rs.next()){
+txtsq.setText(rs.getString("");
+}
+else{
+JOptionPane.showMessageDialog(this,"Sorry Record Not Found ");
+}
+catch(){
+}
+
+
+
+
+
+Login button 
+
+
+Connection con=Connect.Conntion;
+ResultSet rs=null;
+PreparedStatement pst=null;
+pst=con.prepareStatement("Select *from login where email=? and password=?);
+pst.setString(1, txtemail.getText());
+pst.setString(2, txtpassword.getText());
+rs=pst.executeQuery();
+if(rs.next()){
+new signup().setvisible(true);
+}
+else
+JOptionPane.showMessageDialog(this."Invalid Email or password);
+
+
+
+
+
+
+
+Signup button 
+
+if(txt.name.getText().equals("")){
+JOptionPane.showMessageDialog(this,"All filed value is required");
+txtname.requestfocus();
+}
+else if(txt.email.getText().equals("")){
+JOptionPane.showMessageDialog(this,"All filed value is required");
+txtemail.requestfocus();
+}
+else if(txt.password.getText().equals("")){
+JOptionPane.showMessageDialog(this,"All filed value is required");
+txtpassword.requestfocus();
+}
+else if(txt.ans.getText().equals("")){
+JOptionPane.showMessageDialog(this,"All filed value is required");
+txtans.requestfocus();
+}
+else{
+Connection con=Connect.Connction();
+PreparedStatement pst=null;
+ResultSet rs=null;
+pst=con.preparedStatement("Select * from login where email=?");
+pst.setString(1, txtemail.getText());
+rs=pst.executeQuery();
+if(rs.next()){
+JOptionPane.showMessageDialog(this,"Use another Email Id");
+}
+else{
+pst=con.preparedStatement("insert into login (name,email, password,sq,ans)values(?,?,?,?,?)");
+pst.setString(1, txtname.getText());
+pst.setString(2, txtemail.getText());
+pst.setString(3, txtpassword.getText());
+pst.setString(4, jComboBox1.getItemAt(jComboBox1.getSelectedIndex()));
+pst.setString(5, txtans.getText());
+pst.executeUpdate();
+JOptionPane.showMessageDialog(this,"Registration Successful \n Login Now");
+}
+
+
+
+
+Login button 
+
+
+Connection con=null;
+Statement st=null;
+PreparedStatement PST=null;
+try{
+Class.forName("com.mysql.cj.jdbc.Driver");
+con=Driver manager.getConnection("jdbc:MySQL://localhost:3306/library","root",SYSTEM4506");
+pst=con.prepareStatement("Select *from login where email=? and password=?);
+pst.setString(1, txtemail.getText());
+pst.setString(2, txtpassword.getText());
+rs=pst.executeQuery();
+if(rs.next()){
+new signup().setvisible(true);
+}
+else
+JOptionPane.showMessageDialog(this."Invalid Email or password);
+}catch
